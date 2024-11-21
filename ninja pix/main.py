@@ -1,4 +1,4 @@
-from ninja_game import Game
+from game import Game
 
 import pygame
 pygame.init()
