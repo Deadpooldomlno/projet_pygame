@@ -17,16 +17,26 @@ class Player():
         
         self.moving = False
         
-        self.idle = [pygame.image.load(f'assets/idle{i}.png') for i in range(1,3)]      #liste avec chaque image de idle
-        self.idle = [pygame.transform.scale_by(img, 8) for img in self.idle]            #redimentionne la taille de l image 
+        self.img_idleD = [pygame.image.load(f'assets/idle{i}D.png') for i in range(1,3)]      #liste avec chaque image de idle
+        self.img_idleD = [pygame.transform.scale_by(img, 8) for img in self.img_idleD]        #redimentionne la taille de l image 
         
-        self.run = [pygame.image.load(f'assets/run{i}.png') for i in range(1,7)]        #liste avec chaque image de run
-        self.run = [pygame.transform.scale_by(img, 8) for img in self.run]
+        self.img_idleG = [pygame.image.load(f'assets/idle{i}G.png') for i in range(1,3)]  
+        self.img_idleG = [pygame.transform.scale_by(img, 8) for img in self.img_idleG]  
         
-        self.jumps = pygame.image.load('assets/jump.png')
-        self.jumps = pygame.transform.scale_by(self.jumps, 8)
+        self.img_runD = [pygame.image.load(f'assets/run{i}D.png') for i in range(1,7)]        #liste avec chaque image de run
+        self.img_runD = [pygame.transform.scale_by(img, 8) for img in self.img_runD]
         
-        self.current_image = self.idle[0]
+        self.img_runG = [pygame.image.load(f'assets/run{i}G.png') for i in range(1,7)]    
+        self.img_runG = [pygame.transform.scale_by(img, 8) for img in self.img_runG]
+        
+        self.img_jumpD = pygame.image.load('assets/jumpD.png')
+        self.img_jumpD = pygame.transform.scale_by(self.img_jumpD, 8)
+        
+        self.img_jumpG = pygame.image.load('assets/jumpG.png')
+        self.img_jumpG = pygame.transform.scale_by(self.img_jumpG, 8)
+        
+        
+        self.current_image = self.img_idleD[0]
         self.image_index = 0
         self.animation_speed = 0.07
         self.rect = self.current_image.get_rect(center= (w/2,h-134))
@@ -71,18 +81,19 @@ class Player():
     def update_animation(self):
                 
         if self.moving:
-            image = self.run
+            image = self.img_runD
         elif self.jumping:
-            image = self.jumps        
+            image = self.img_jumpD        
         else:
-            image = self.idle
+            image = self.img_idleD
 
-        if image == self.run:
+        if image == self.img_runD:
             self.image_index += self.animation_speed + 0.08
             if self.image_index >= len(image):
                 self.image_index = 0
             self.current_image = image[int(self.image_index)]
-        elif image == self.idle:
+        
+        elif image == self.img_idleD:
             self.image_index += self.animation_speed
             if self.image_index >= len(image):
                 self.image_index = 0
