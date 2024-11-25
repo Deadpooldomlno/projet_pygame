@@ -20,12 +20,14 @@ class Shuriken(pygame.sprite.Sprite): #class Shuriken qui est un sprite
         self.speed = 12
         self.angle = 0
         self.origin_image = self.image
-    
+        
+        self.direction = self.player.last_direction
+        
     #methode pour fait tourner le shuriken en fonction de la direction du joueur
     def rotate(self):
-        if self.player.last_direction == 'droite':
+        if self.direction == 'droite':
             self.angle -= 12
-        elif self.player.last_direction == 'gauche':
+        elif self.direction == 'gauche':
             self.angle += 12
             
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
@@ -34,9 +36,9 @@ class Shuriken(pygame.sprite.Sprite): #class Shuriken qui est un sprite
     
     #methode pour faire avancre le shuriken
     def move(self):
-        if self.player.last_direction == 'droite':
+        if self.direction == 'droite':
             self.rect.x += self.speed
-        elif self.player.last_direction == 'gauche':
+        elif self.direction == 'gauche':
             self.rect.x -= self.speed
             
         self.rotate() #appelle de l amethode rotate
@@ -48,3 +50,4 @@ class Shuriken(pygame.sprite.Sprite): #class Shuriken qui est un sprite
     def remove(self):
         self.player.all_shoots.remove(self)
         #print('suppr')
+
