@@ -1,0 +1,14 @@
+import pygame
+pygame.init()
+
+class Ennemie:
+  def__init__(self):
+    self.vie = 2
+    
+    self.w = self.game.screen.get_width() 
+    self.h = self.game.screen.get_height()
+    
+    self.speed_x = 5
+    
+    self.image =  pygame.image.load('ninja pix/assets/Ennemi.png')
+    
