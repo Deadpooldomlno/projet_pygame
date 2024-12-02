@@ -29,10 +29,10 @@ class Ennemi:
             self.rect.x -= self.speed_x
 
         # Si l'ennemi atteint le bord droit de l'écran, il change de direction
-        if self.rect.x >= 10:
+        if self.rect.x >= self.pixel=10:
             self.direction = 'gauche'
         # Si l'ennemi atteint le bord gauche de l'écran, il change de direction
-        elif self.rect.x <= 10:
+        elif self.rect.x <= self.nb_pixel=10:
             self.direction = 'droite'
         self.nb_pixel += 1
     def draw(self):
