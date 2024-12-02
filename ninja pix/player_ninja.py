@@ -50,7 +50,8 @@ class Player():
         self.rect = self.current_image.get_rect(center= (self.w/2,self.h-134)) #recupere la surface de l image principale, et indique son centre 
          
         self.all_shoots = pygame.sprite.Group() #groupe de sprite qui va contenir chaque instance du Shuriken
-    
+        
+        self.vie= 3 #la vie du personnage
     #methode pour ce deplacer          
     def move(self):
         
