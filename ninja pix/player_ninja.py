@@ -54,39 +54,39 @@ class Player():
         self.vie= 3 #la vie du personnage
     #methode pour ce deplacer          
     def move(self):
-        
-        self.moving = False
-        
-        pressed = pygame.key.get_pressed()
-        
-        #deplace vers la gauche
-        if pressed[pygame.K_LEFT] and self.rect.left >=0: #si fleche de gauche est pressée
-            #self.rect.x -= self.speed_x (a voir si on garde)
-            self.moving = True
-            self.last_direction = 'gauche' #orienté vers la gauche
-            self.game.bg.move_bg() #mouvement dsu bg pour donner l impresion de deplacement
-        
-        #meme chose mais se deplace vers la droite
-        if pressed[pygame.K_RIGHT] and self.rect.right <=self.w: #si fleche de droite est pressée
-            #self.rect.x += self.speed_x
-            self.moving = True
-            self.last_direction = 'droite'
-            self.game.bg.move_bg()
+        if not self.game.collision(self, self.all_ennemis):
+            self.moving = False
             
-        #si il saute
-        if self.jumping:
-            self.speed_y += self.g  
-            self.rect.y += self.speed_y
+            pressed = pygame.key.get_pressed()
             
+            #deplace vers la gauche
+            if pressed[pygame.K_LEFT] and self.rect.left >=0: #si fleche de gauche est pressée
+                #self.rect.x -= self.speed_x (a voir si on garde)
+                self.moving = True
+                self.last_direction = 'gauche' #orienté vers la gauche
+                self.game.bg.move_bg() #mouvement dsu bg pour donner l impresion de deplacement
             
-            if self.rect.bottom >= self.h - 70:
-                self.rect.bottom = self.h - 70
-                self.jumping = False
-                self.speed_y = 0
+            #meme chose mais se deplace vers la droite
+            if pressed[pygame.K_RIGHT] and self.rect.right <=self.w: #si fleche de droite est pressée
+                #self.rect.x += self.speed_x
+                self.moving = True
+                self.last_direction = 'droite'
+                self.game.bg.move_bg()
+                
+            #si il saute
+            if self.jumping:
+                self.speed_y += self.g  
+                self.rect.y += self.speed_y
+                
+                
+                if self.rect.bottom >= self.h - 70:
+                    self.rect.bottom = self.h - 70
+                    self.jumping = False
+                    self.speed_y = 0
+            
+            self.update_animation() #appelle de la methode pour faire changer l animation en fonction
         
-        self.update_animation() #appelle de la methode pour faire changer l animation en fonction
-    
-    #methode de saut
+        #methode de saut
     def jump(self):
         if not self.jumping: 
             self.jumping = True
