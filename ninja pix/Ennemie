@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 class Ennemi:
-    def __init__(self, screen):
+    def __init__(self, screen,game):
         # Initialisation des attributs de l'ennemi
         self.vie = 3
         self.screen = screen
@@ -12,6 +12,7 @@ class Ennemi:
         self.h = self.screen.get_height()
         self.speed_x = 5
         self.image = pygame.image.load('ninja pix/assets/Ennemi.png')
+        self.nb_pixel = 10
 
         # Créer un rectangle pour l'ennemi et le positionner
         self.rect = self.image.get_rect()
@@ -20,8 +21,10 @@ class Ennemi:
 
         # Initialiser la direction
         self.direction = 'droite'  # Direction initiale (droite)
-        self.nb_pixel=0
-    def move(self):
+        
+        self.game =game
+def move(self):
+    if not self.game.collision(self, self.game.all_players):
         # Déplacement de l'ennemi en fonction de la direction
         if self.direction == 'droite':
             self.rect.x += self.speed_x
@@ -29,12 +32,15 @@ class Ennemi:
             self.rect.x -= self.speed_x
 
         # Si l'ennemi atteint le bord droit de l'écran, il change de direction
-        if self.rect.x >= self.pixel=10:
+        if self.rect.x >= self.nb_pixel:
             self.direction = 'gauche'
+        
         # Si l'ennemi atteint le bord gauche de l'écran, il change de direction
-        elif self.rect.x <= self.nb_pixel=10:
+        elif self.rect.x <= self.nb_pixel:
             self.direction = 'droite'
-        self.nb_pixel += 1
-    def draw(self):
-        # Dessiner l'ennemi à l'écran
-        self.screen.blit(self.image, self.rect)
+
+    
+def draw(self):
+    # Dessiner l'ennemi à l'écran
+    self.screen.blit(self.image, self.rect)
+
