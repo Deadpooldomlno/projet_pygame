@@ -3,22 +3,23 @@ import pygame
 
 pygame.init()
 
-class Ennemi:
+class Ennemi(pygame.sprite.Sprite):
     def __init__(self,game):
         # Initialisation des attributs de l'ennemi
+        super().__init__() #constructeur du sprite
         self.game =game
         
         self.vie = 3
         self.w = game.w
         self.h = game.h
         self.speed_x = 5
-        self.image = pygame.image.load('ninja pix/assets/Ennemi.png')
+        self.image = pygame.image.load('assets/Ennemi.png')
+        self.image = pygame.transform.scale(self.image,(int(250),int(400)))
         self.nb_pixel = 10
-
         # Créer un rectangle pour l'ennemi et le positionner
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(self.w)  # Centrer l'ennemi horizontalement
-        self.rect.y = self.h // 2  # Centrer l'ennemi verticalement
+        self.rect.x = random.randint(0,self.w)  # Centrer l'ennemi horizontalement
+        self.rect.y = self.h/2 # Centrer l'ennemi verticalement
 
         # Initialiser la direction
         self.direction = 'droite'  # Direction initiale (droite)
@@ -41,7 +42,7 @@ class Ennemi:
                 self.direction = 'droite'
 
         
-    def draw(self):
+    def draw(self, screen):
         # Dessiner l'ennemi à l'écran
-        self.screen.blit(self.image, self.rect)
+        screen.blit(self.image, self.rect)
 
