@@ -1,6 +1,6 @@
 import random 
 import pygame
-
+from player_ninja import Player
 pygame.init()
 
 class Ennemi(pygame.sprite.Sprite):
@@ -31,7 +31,7 @@ class Ennemi(pygame.sprite.Sprite):
     
     
     def move(self):
-        if not self.game.collision(self, Player()):
+        if not self.rect.colliderect(self.game.player.rect):
             # Déplacement de l'ennemi en fonction de la direction
             if self.direction == 'droite':
                 self.rect.x += self.speed_x
