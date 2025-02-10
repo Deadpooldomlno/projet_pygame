@@ -30,7 +30,10 @@ while running:
         shoot.move()
     
     for ennemi in game.all_ennemis:
-        ennemi.draw(screen)
+        ennemi.move()
+    
+        game.all_ennemis.draw(screen)
+    
     screen.blit(game.player.current_image, game.player.rect) #affiche le joueur sur l ecran
     game.player.move() #methode pour fair avancer le joeur
     game.player.all_shoots.draw(screen) #dessine chaque shouriken contenue dans le groupe de sprite
