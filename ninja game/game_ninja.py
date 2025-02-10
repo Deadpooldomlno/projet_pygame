@@ -24,8 +24,9 @@ class Game():
         self.player = Player(self)
         self.all_players.add(self.player)
         self.spawn_Ennemi()
-    def collision(self,sprite,group):
-        return pygame.sprite.spritecollide(sprite,group, False, pygame.sprite.collide_mask)
+    
+    def collision(self,rect):
+        return self.colliderect(self.rect) 
     
     def spawn_Ennemi(self):
         monster = Ennemi(self)
