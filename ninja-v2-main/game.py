@@ -26,8 +26,10 @@ class Game:
         self.players.append(self.player.rect)
         
         self.spike = Spike(screen,(200,388),1)
+        self.spike2 = Spike(screen,(550,357),2)
         self.spikes=[]
         self.spikes.append(self.spike)
+        self.spikes.append(self.spike2)
         
         #boutons
         self.button_setting = Button(screen,('assets/buttons/setting1.png','assets/buttons/setting2.png'),(self.w-30,20))
